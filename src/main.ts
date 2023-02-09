@@ -16,9 +16,25 @@ let findOutlier = (integers: number[]): number => {
             oddMarker++
         }
     }
-    
-    console.log('odd ' + oddMarker + 'even '+ evenMarker)
-    return 1
+    if(oddMarker>evenMarker){
+        // console.log('im looking for an even number')
+        for(let element of integers) {
+            if(element % 2 == 0){
+                // console.log(element)
+                return element
+            } 
+        }
+    } else {
+        // console.log('im looking for an odd number')
+        for(let element of integers) {
+            if(element % 2 != 0){
+                // console.log(element)
+                return element
+            } 
+        }
+    }
+    // console.log('odd ' + oddMarker + 'even '+ evenMarker)
+    // return 0
 }
 
 
