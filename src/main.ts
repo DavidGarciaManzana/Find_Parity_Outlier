@@ -7,37 +7,46 @@
 let findOutlier = (integers: number[]): number => {
     let oddMarker = 0;
     let evenMarker = 0;
-    for (let i = 0; i < integers.length; i++) {
-        //even
-        if (integers[i] % 2 == 0) {
-            // console.log(integers[i])
-            evenMarker++
-        } else { //odd 
-            oddMarker++
-        }
+    let lookingForEven = (arr: number[]) => {
+        arr.forEach((int, index) => {
+            if (integers[index] % 2 == 0) {
+                evenMarker++
+            } else {
+                oddMarker++
+            }
+        })
+        return evenMarker < oddMarker ? true : false
     }
-    if(oddMarker>evenMarker){
-        // console.log('im looking for an even number')
-        for(let element of integers) {
-            if(element % 2 == 0){
-                // console.log(element)
-                return element
-            } 
+    let findEven = (arr: number[]): number => {
+        let result = 0;
+        for (let element of arr) {
+            if (element % 2 == 0) {
+                result += element
+            }
         }
+        return result
+    }
+    let findOdd = (arr: number[]): number => {
+        let result = 0;
+        for (let element of arr) {
+            if (element % 2 != 0) {
+                result += element
+            }
+        }
+        return result
+    }
+
+    
+    if (lookingForEven(integers)) {
+        return findEven(integers)
+
     } else {
-        // console.log('im looking for an odd number')
-        for(let element of integers) {
-            if(element % 2 != 0){
-                // console.log(element)
-                return element
-            } 
-        }
+        return findOdd(integers)
+
     }
-    // console.log('odd ' + oddMarker + 'even '+ evenMarker)
-    // return 0
 }
 
-
+// findOutlier([2, 4, 0, 100, 4, 11, 2602, 36])
 console.log(findOutlier([2, 4, 0, 100, 4, 11, 2602, 36])) //11 (the only odd number)
 console.log(findOutlier([160, 3, 1719, 19, 11, 13, -21])) //160 (the only even number)
 
