@@ -1,0 +1,4 @@
+tsconfig.json
+main.js
+/node_modules
+/dist
